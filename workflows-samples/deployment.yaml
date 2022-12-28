@@ -1,0 +1,37 @@
+name: Deploy React App
+on: push
+jobs:
+  #this part will test code
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the repository code
+        uses: actions/checkout@v3
+      - name: Install dependences
+        run: npm ci
+      - name: Test application
+        run: npm run test
+  #this part will lint code (check for quality)
+  lint:
+    runs-on: ubuntu-latest
+    #needs make this part wait for the end of test
+    needs: test
+    steps:
+      - name: Get the repository code
+        uses: actions/checkout@v3
+      - name: Install dependences
+        run: npm ci
+      - name: Lint application
+        run: npm run lint
+  build:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Get the repository code
+        uses: actions/checkout@v3
+      - name: Install dependences
+        run: npm ci
+      - name: Build application
+        run: npm run build
+      - name: Deploy
+        run: echo Deploying...
