@@ -1,6 +1,7 @@
-name: Test React App
+name: Deploy React App
 on: push
 jobs:
+  #this part will test code
   test:
     runs-on: ubuntu-latest
     steps:
@@ -10,3 +11,5 @@ jobs:
         run: npm ci
       - name: Test application
         run: npm run test
+  #this part will lint code (check for quality)
+  lint: 
