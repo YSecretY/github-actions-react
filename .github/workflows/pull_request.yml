@@ -1,6 +1,6 @@
 name: Print Pull Request Context
 # workflow triggers can be different and we can make an array of them, hence this will respond for all of them
-on: [workflow_dispatch, push, pull_request]
+on: [workflow_dispatch, pull_request]
 # also there are different activity types in pull_request for example, so ther is a different way to do it:
 # on:
 #  workflow_dispatch:
@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print context
-        run: echo "${{ toJSON(github.event) }}"
+        run: echo "${{ toJSON(github.event) }}" 
